@@ -272,7 +272,7 @@
     "AutoCrystalBlock": "检测到附近末地水晶时自动放置方块抵挡",
     "ElytraArmorSwitch": "在地面时自动穿盔甲，在空中使用鞘翅",
     "ElytraUnbreak": "通过自动切换鞘翅来防止耐久消耗，并可选自动使用烟花",
-    "Printer": "读取 .litematic 投影文件并在你身边重建，无需安装 Litematica",
+    "Printer": "按 Litematica 当前加载的投影在你身边放置方块（需要安装 Litematica）",
     "AutoTreeChop": "自动砍伐周围的整棵树，可选从上往下、自动换斧、等待掉落",
     "VanityESP": "高亮带地图的物品展示框与旗帜，方便找藏宝点",
     "ThreeCCheck": "查询 3c3u.info 的玩家总在线时长，低于阈值判定为萌新"
@@ -403,6 +403,7 @@
     "ThresholdHours": "萌新时长阈值（小时）",
     "AutoQuery": "范围内自动查询",
     "AutoRange": "自动查询范围（米）",
-    "ChatResult": "聊天栏输出结果"
+    "ChatResult": "聊天栏输出结果",
+    "ScanInterval": "扫描间隔（tick）"
   }
 }

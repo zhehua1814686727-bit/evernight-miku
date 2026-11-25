@@ -103,7 +103,7 @@ javac @javac.args && java @java.args
 | `TreeAuraPlus` | 自动种树 | 在周围放树苗 |
 | `AutoDigFeet` | 脚下挖掘 | 挖掉挡路的脚前方块 |
 | `AutoTouchFire` | 自动消防 | 扑灭周围火焰 |
-| `Printer` | Miku投影打印机 | 读取 `.litematic` 投影并在你身边重建（不需要装 Litematica） |
+| `Printer` | Miku投影打印机 | 按 Litematica 当前加载的投影在你身边放置方块（需要安装 Litematica） |
 | `AutoTreeChop` | 自动砍树（Tanghulu） | 自动砍周围整棵树，可选从上往下、自动换斧、等掉落 |
 
 ### Miku 特调（6）
@@ -152,15 +152,15 @@ evernight-miku/
 
 ## 投影打印机用法
 
-`Printer` 直接读 Litematica 的 `.litematic` 文件，**不需要安装 Litematica**：
+`Printer` 直接读取 **Litematica 当前加载的投影**（`SchematicWorldHandler.getSchematicWorld()`），
+所以原点、旋转、镜像全部沿用你在 Litematica 里的放置设置，插件不再自己解析文件。
 
-1. `File` 填 `.litematic` 的完整路径（例如 `D://schem//base.litematic`）
-2. `Anchor` 选 `Player`：以你脚下为原点；或选 `Fixed` 并在 `OriginX/Y/Z` 填绝对坐标
-3. 需要的话调整 `Rotation`（0/90/180/270）、`MirrorX` / `MirrorZ`
-4. 打开一次 `Reload` 重新载入，聊天栏会显示 `Loaded <名字>: <方块数> blocks`
-5. 站到范围内即可开始自动放置；`BlocksPerTick` 默认 2，`DelayTicks` 控制节奏
+1. 安装 [Litematica](https://github.com/sakura-ryoko/litematica)（需要 malilib，1.21.11 对应 0.27.x）
+2. 在 Litematica 里加载 `.litematic` 并把投影摆到目标位置
+3. 打开 `Printer`，站到范围内就会自动补方块；`Range` 默认 4.5，`BlocksPerTick` 默认 2
+4. 没装 Litematica 或没加载投影时，模块会在聊天栏提示并自动关闭
 
-限制：楼梯/半砖会按朝向与上下半砖做基础处理，活板门、火把等特殊朝向暂按默认放置；投影里的方块必须在背包里（草方块可用泥土替代，见 `DirtForGrass`）。
+`DirtForGrass` 打开时，投影要草方块/菌丝/灰化土但背包只有泥土也会放；`Debug` 会在缺方块时提示具体方块名。
 
 ## 与 1.0.3 的适配
 

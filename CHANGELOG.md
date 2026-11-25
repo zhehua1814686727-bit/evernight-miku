@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.5.0 — 2026-11-25
+
+### 变更
+
+- `Printer` 改为依赖 **Litematica**：直接读取当前加载的投影世界，原点/旋转/镜像沿用 Litematica 的放置设置，
+  不再自己解析 `.litematic` 文件
+- 未安装 Litematica 或未加载投影时给出聊天提示并自动关闭模块，不会影响插件加载
+- 移除文件解析相关设置（File / Reload / Anchor / Origin / Rotation / Mirror），新增 `ScanInterval`
+
 ## 1.4.0 — 2026-11-25
 
 ### 新增
