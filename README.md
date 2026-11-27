@@ -159,17 +159,6 @@ evernight-miku/
   `addons.mikumiku.*` 两套命名空间。
 - 1.2.x 新增 `Module#requiresMod`，未安装前置模组时模块会自动隐藏，本插件暂未使用。
 
-## 实现备注
-
-- 所有模块继承 `AddonModule`，模块名是稳定的英文标识（指令/配置键/预设依赖它），中文只出现在语言表。
-- 事件使用本体的 `@EventHandler`（`MinecraftTickEvent`、`PacketEvent.Receive`、`PlayerAttackEvent`、
-  `ChatMessageEvent` 等），模块 `enable()` 时自动订阅、`disable()` 自动退订。
-- 放置方块统一走 `BlockInteractionUtils.placeBlock` + `InventoryUtils.swapTo/swapBack`，
-  旋转走 `ClientContext.rotationManager.requestRotation`，发包走 `PacketSender`。
-- 重映射脚本的坑：tiny v2 的成员行是 `\t<f|m>\t<描述符(源命名空间)>\t<源命名>\t<目标命名>`，列序写反时
-  tiny-remapper 只会改类名和描述符，成员名原样保留——编译和加载都不会报错，运行时才炸。
-- 本插件不含任何 mixin 配置。
-
 ## 许可
 
 原插件 `meteor-miku` 版权归 mikumiku 所有；Evernight 本体为 GPL-3.0-only。本移植工程仅链接本体公开 API，
