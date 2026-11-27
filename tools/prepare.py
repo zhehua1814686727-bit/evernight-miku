@@ -23,7 +23,7 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GRADLE = os.path.expanduser("~/.gradle/caches")
 MC_VERSION = "1.21.11"
-EVERNIGHT_VERSION = "1.0.3"
+EVERNIGHT_VERSION = "1.2.5"
 RELEASE_URL = ("https://github.com/Evernight-Client/Evernight/releases/download/"
                "v{version}/evernight-{version}.jar")
 MIRRORS = (

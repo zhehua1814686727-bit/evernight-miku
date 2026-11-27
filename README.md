@@ -8,14 +8,14 @@
 
 仓库：<https://github.com/zhehua1814686727-bit/evernight-miku> · 变更记录：[CHANGELOG.md](CHANGELOG.md)
 
-- 目标环境：Minecraft 1.21.11 · Fabric · **Evernight 1.0.3+** · Java 21
+- 目标环境：Minecraft 1.21.11 · Fabric · **Evernight 1.2.5+** · Java 21
 - 插件 id：`mikumiku`，入口 `evernight-addon`
-- 当前 **22 个模块**：建造、移动特调、实用工具与 HUD
+- 当前 **20 个模块**：建造、移动特调、实用工具与 HUD
 - 使用 1.0.3 的 `AddonContext.registerCategory` 注册 3 个专属分类：**Miku / Miku 建设 / Miku 特调**
 
 ## 安装
 
-1. 安装 Fabric Loader 0.19.5+、Fabric API、Evernight 1.0.3（1.21.11）。
+1. 安装 Fabric Loader 0.19.5+、Fabric API、Evernight 1.2.5（1.21.11）。
 2. 拿到插件 jar（二选一）：
    - 从 [Releases](https://github.com/zhehua1814686727-bit/evernight-miku/releases) 下载 `evernight-miku-1.2.0.jar`
    - 或按下面的「从源码构建」自己编译
@@ -64,38 +64,37 @@ python tools/build.py  # javac -> tiny-remapper(named→intermediary) -> 打包
 # 1) 所有 Minecraft 成员引用都能在 intermediary 目标 jar 里解析
 javac -cp "<asm>;<asm-tree>" -d build/verify tools/verify/VerifyRemap.java
 java -cp "build/verify;<asm>;<asm-tree>" VerifyRemap build/libs/evernight-miku-1.2.0.jar <minecraft-merged-intermediary.jar>
-# 期望输出：checked=514 missing=0
+# 期望输出：checked=409 missing=0
 
 # 2) 所有 class 能在 MC + 本体 jar 上加载
 javac -d build/verify tools/verify/CheckJar.java
 java -cp build/verify CheckJar build/libs/evernight-miku-1.2.0.jar <mc.jar> <evernight.jar> <brigadier> <gson> <slf4j>
-# 期望输出：ok=32 fail=0
+# 期望输出：ok=27 fail=0
 
 # 3) 模块构造函数（需要真实依赖 classpath）
 javac @javac.args && java @java.args
-# 期望输出：ok=21 fail=0
+# 期望输出：ok=30 fail=0
 ```
 
 `VerifyRemap` 是必须的：`named2int.tiny` 的成员列顺序一旦写反，字段/方法名不会重映射，
 编译能过、类能加载，但进游戏第一次访问 MC 成员就会 `NoSuchMethodError`。
 
-## 模块（22）
+## 模块（20）
 
-### Miku（9）
+### Miku（8）
 
 | 模块 | 原模块 | 说明 |
 | --- | --- | --- |
 | `FishingRodFace` | 鱼竿糊脸 | 对最近敌人甩鱼竿 |
 | `DeathCommand` | 死亡自动指令 | 死亡后自动发送自定义指令 |
 | `AutoLoginPlus` | 自动登录Plus | 进服后按模板发送 `/login` |
-| `AutoSM` | 自动社交 | 定时发送社交消息 |
 | `PlayerAlertPlus` | 看门狗 | 指定玩家进入范围时提醒 |
 | `HandsomeSpin` | 靓仔转圈 | 角色持续旋转 |
 | `InventoryPrinter` | 库存打印 | 把背包内容打到聊天栏 |
 | `ChestAuraPlus` | 翻箱倒柜 | 自动打开附近箱子（不拿东西） |
 | `ThreeCCheck` | 3C萌新识别（Tanghulu） | 查 3c3u.info 总在线时长，低于阈值标萌新；可自动查范围内玩家 |
 
-### Miku 建设（6）
+### Miku 建设（4）
 
 | 模块 | 原模块 | 说明 |
 | --- | --- | --- |
@@ -103,7 +102,6 @@ javac @javac.args && java @java.args
 | `TreeAuraPlus` | 自动种树 | 在周围放树苗 |
 | `AutoDigFeet` | 脚下挖掘 | 挖掉挡路的脚前方块 |
 | `AutoTouchFire` | 自动消防 | 扑灭周围火焰 |
-| `Printer` | Miku投影打印机 | 按 Litematica 当前加载的投影在你身边放置方块（需要安装 Litematica） |
 | `AutoTreeChop` | 自动砍树（Tanghulu） | 自动砍周围整棵树，可选从上往下、自动换斧、等掉落 |
 
 ### Miku 特调（6）
@@ -137,7 +135,7 @@ evernight-miku/
 │   ├── MikuHudModule.java    HUD 基类（HudWidgetModule + addons 命名空间）
 │   ├── MikuModules.java      注册表（一行一个模块）
 │   ├── MikuCommand.java      ;miku 指令
-│   ├── modules/              21 个模块
+│   ├── modules/              30 个模块
 │   └── util/MikuUtils.java   放置/旋转/搜索等公共工具
 ├── src/main/resources/
 │   ├── fabric.mod.json
@@ -150,25 +148,16 @@ evernight-miku/
     └── verify/               VerifyRemap / CheckJar / BaritoneProbe / CtorTest
 ```
 
-## 投影打印机用法
+## 与 1.2.5 的适配
 
-`Printer` 直接读取 **Litematica 当前加载的投影**（`SchematicWorldHandler.getSchematicWorld()`），
-所以原点、旋转、镜像全部沿用你在 Litematica 里的放置设置，插件不再自己解析文件。
-
-1. 安装 [Litematica](https://github.com/sakura-ryoko/litematica)（需要 malilib，1.21.11 对应 0.27.x）
-2. 在 Litematica 里加载 `.litematic` 并把投影摆到目标位置
-3. 打开 `Printer`，站到范围内就会自动补方块；`Range` 默认 4.5，`BlocksPerTick` 默认 2
-4. 没装 Litematica 或没加载投影时，模块会在聊天栏提示并自动关闭
-
-`DirtForGrass` 打开时，投影要草方块/菌丝/灰化土但背包只有泥土也会放；`Debug` 会在缺方块时提示具体方块名。
-
-## 与 1.0.3 的适配
-
-- 依赖 `evernight-1.0.3.jar`（`depends.evernight >= 1.0.3`），`ModuleCategory` 由枚举改成 final class 对本工程源码兼容。
+- 依赖 `evernight-1.2.5.jar`（`depends.evernight >= 1.2.5`），编译与运行都用同一个版本。
 - `MikuCategories` 在 `onInitialize` 里先 `registerCategory` 再注册模块（模块会记住构造时的分类实例），注册失败回退内置分类。
-- 1.0.3 的 `AddonModule` 不再使用 Java 里的 description 兜底，所有显示文本都来自语言表。
-- **设置提示文字的命名空间限制**：ClickGUI 的设置 tooltip 走 `Translations.settingDescription(module, setting)`，内部硬编码 `evernight.descriptions.settings.<模块>.<设置>`，1.0.3 没有插件命名空间的重载。为了不让 tooltip 显示原始键，`gen_lang.py` 会额外生成这组键（按本插件唯一的模块名限定，不会与本体模块冲突）；模块名和设置名仍只放在 `addons.mikumiku.*`。这是上游缺口，等本体提供 addon-aware 重载后可以删掉。
-- 1.0.3 修复了「未安装 Baritone 时反射 `BaritoneModule` 字段崩溃」的问题，Baritone 现在是可选的（已用 `BaritoneProbe` 验证）。
+- `AddonModule` 不使用 Java 里的 description 兜底，所有显示文本都来自语言表。
+- **设置提示文字的命名空间限制**：ClickGUI 的设置 tooltip 走 `Translations.settingDescription(module, setting)`，
+  内部硬编码 `evernight.descriptions.settings.<模块>.<设置>`。为了不让 tooltip 显示原始键，`gen_lang.py`
+  会额外生成这组键（按本插件唯一的模块名限定）；分类标题、模块介绍和枚举值也同时写进 `evernight.*` 与
+  `addons.mikumiku.*` 两套命名空间。
+- 1.2.x 新增 `Module#requiresMod`，未安装前置模组时模块会自动隐藏，本插件暂未使用。
 
 ## 实现备注
 

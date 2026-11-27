@@ -4,10 +4,8 @@ import com.github.mikumiku.evernight.modules.AutoBlockCenterModule;
 import com.github.mikumiku.evernight.modules.AutoDigFeetModule;
 import com.github.mikumiku.evernight.modules.AutoFollowPlayerModule;
 import com.github.mikumiku.evernight.modules.AutoLoginModule;
-import com.github.mikumiku.evernight.modules.AutoSMModule;
 import com.github.mikumiku.evernight.modules.AutoSlabModule;
 import com.github.mikumiku.evernight.modules.AutoTouchFireModule;
-import com.github.mikumiku.evernight.modules.AutoTreeChopModule;
 import com.github.mikumiku.evernight.modules.AutoTreeChopModule;
 import com.github.mikumiku.evernight.modules.ChestAuraModule;
 import com.github.mikumiku.evernight.modules.DeathCommandModule;
@@ -18,11 +16,8 @@ import com.github.mikumiku.evernight.modules.HandsomeSpinModule;
 import com.github.mikumiku.evernight.modules.HoverModule;
 import com.github.mikumiku.evernight.modules.InventoryPrinterModule;
 import com.github.mikumiku.evernight.modules.PlayerAlertModule;
-import com.github.mikumiku.evernight.modules.PrinterModule;
-import com.github.mikumiku.evernight.modules.ThreeCCheckModule;
 import com.github.mikumiku.evernight.modules.ThreeCCheckModule;
 import com.github.mikumiku.evernight.modules.TreeAuraModule;
-import com.github.mikumiku.evernight.modules.VanityEspModule;
 import com.github.mikumiku.evernight.modules.VanityEspModule;
 import com.github.mikumiku.evernight.modules.hud.PotCountHudModule;
 import evernight.addon.AddonContext;
@@ -51,7 +46,6 @@ public final class MikuModules {
         FACTORIES.add(FishingRodFaceModule::new);
         FACTORIES.add(DeathCommandModule::new);
         FACTORIES.add(AutoLoginModule::new);
-        FACTORIES.add(AutoSMModule::new);
         FACTORIES.add(PlayerAlertModule::new);
         FACTORIES.add(HandsomeSpinModule::new);
         FACTORIES.add(InventoryPrinterModule::new);
@@ -61,7 +55,6 @@ public final class MikuModules {
         FACTORIES.add(TreeAuraModule::new);
         FACTORIES.add(AutoDigFeetModule::new);
         FACTORIES.add(AutoTouchFireModule::new);
-        FACTORIES.add(PrinterModule::new);
         FACTORIES.add(AutoTreeChopModule::new);
         // Miku 特调
         FACTORIES.add(HoverModule::new);

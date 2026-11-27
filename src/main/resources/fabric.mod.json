@@ -3,7 +3,7 @@
   "id": "mikumiku",
   "version": "${version}",
   "name": "Miku Addon",
-  "description": "Miku addon for Evernight: the modules meteor-miku offers that Evernight does not already have (build, movement tweaks, utility, HUD).",
+  "description": "Miku Addon —— 给 Evernight 补上本体没有的模块：建造、移动特调、实用工具与 HUD。",
   "authors": [
     "mikumiku",
     "Evernight port"
@@ -19,6 +19,6 @@
     "minecraft": "1.21.11",
     "java": ">=21",
     "fabric-api": "*",
-    "evernight": ">=1.0.3"
+    "evernight": ">=1.2.5"
   }
 }

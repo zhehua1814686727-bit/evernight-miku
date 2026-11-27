@@ -221,6 +221,46 @@
     "ThreeCCheck": [
       "ThreeCCheck",
       "3C萌新识别"
+    ],
+    "TotemLog": [
+      "TotemLog",
+      "图腾日志"
+    ],
+    "NoQDrop": [
+      "NoQDrop",
+      "防误丢弃"
+    ],
+    "EnderEyeLog": [
+      "EnderEyeLog",
+      "末影之眼日志"
+    ],
+    "Disabler": [
+      "Disabler",
+      "反作弊禁用器"
+    ],
+    "AttackEnhance": [
+      "AttackEnhance",
+      "攻击增强"
+    ],
+    "MovExtra": [
+      "MovExtra",
+      "移动扩展"
+    ],
+    "ElytraFlight": [
+      "Miku ElytraFlight",
+      "Miku 鞘翅飞行"
+    ],
+    "ElytraBot": [
+      "Miku ElytraBot",
+      "Miku 鞘翅追击"
+    ],
+    "ElytraExtra": [
+      "ElytraExtra",
+      "鞘翅扩展"
+    ],
+    "SimpleElytraFlight": [
+      "SimpleElytraFlight",
+      "简易鞘翅飞行"
     ]
   },
   "DESCRIPTIONS_ZH": {
@@ -275,7 +315,17 @@
     "Printer": "按 Litematica 当前加载的投影在你身边放置方块（需要安装 Litematica）",
     "AutoTreeChop": "自动砍伐周围的整棵树，可选从上往下、自动换斧、等待掉落",
     "VanityESP": "高亮带地图的物品展示框与旗帜，方便找藏宝点",
-    "ThreeCCheck": "查询 3c3u.info 的玩家总在线时长，低于阈值判定为萌新"
+    "ThreeCCheck": "查询 3c3u.info 的玩家总在线时长，低于阈值判定为萌新",
+    "TotemLog": "记录谁爆了图腾、位置与血量",
+    "NoQDrop": "拦截 Q 键丢物品，可选只在潜行时允许丢弃",
+    "EnderEyeLog": "记录末影之眼的落点坐标",
+    "Disabler": "Grim 放置队列禁用：同 tick 多点放置重发、切槽强制刷新队列",
+    "AttackEnhance": "攻击前自动切最佳武器、对盾用斧、下落切锤",
+    "MovExtra": "背包操作时清空疾跑与输入状态，避免被 Grim 判定多动作",
+    "ElytraFlight": "跳跃拉升/潜行俯冲的滑翔控制，含拉升/俯冲/平飞角度覆盖、自动起飞与烟花模式",
+    "ElytraBot": "鞘翅追击机器人：Follow / MaceAura / SpearAura，含自动攻击与发包模式",
+    "ElytraExtra": "进服自动起飞、水中烟花加速、蛛网限速与全局滑翔限速",
+    "SimpleElytraFlight": "简易鞘翅控制：长按跳跃起飞，速度不足自动烟花，前进时自动保持巡航俯仰"
   },
   "SETTING_NAMES": {
     "Horizontal": "水平击退比例",
@@ -365,7 +415,7 @@
     "OnlyFeet": "仅脚边放置",
     "Cobblestone": "圆石",
     "Threshold": "耐久阈值",
-    "AutoFirework": "自动发射烟花",
+    "AutoFirework": "自动烟花",
     "FireworkInterval": "烟花发射间隔",
     "ShowSplashPotCount": "显示溅射药水数量",
     "ShowResistanceTime": "显示抗性时间",
@@ -404,6 +454,101 @@
     "AutoQuery": "范围内自动查询",
     "AutoRange": "自动查询范围（米）",
     "ChatResult": "聊天栏输出结果",
-    "ScanInterval": "扫描间隔（tick）"
+    "ScanInterval": "扫描间隔（tick）",
+    "LogSelf": "记录自己",
+    "LogOthers": "记录他人",
+    "ShowHealth": "显示血量",
+    "RequireSneak": "需潜行才丢弃",
+    "BlockAll": "全部拦截",
+    "MultiPlace": "同 tick 多点重发",
+    "FlushQueue": "强制刷新队列",
+    "AutoWeapon": "自动切武器",
+    "AntiShield": "对盾用斧",
+    "MaceSwap": "下落切锤",
+    "MaceMinFall": "切锤最小下落",
+    "SprintFix": "疾跑修复",
+    "InputFix": "输入修复",
+    "PullUpAngle": "拉升角度",
+    "DownAngle": "俯冲角度",
+    "AutoTakeoff": "自动起飞",
+    "MinSpeed": "最低水平速度",
+    "StopDistance": "停止距离",
+    "MaxPitch": "最大俯仰角",
+    "AutoStartOnJoin": "进服自动起飞",
+    "LiquidFirework": "水中烟花",
+    "WebSpeedLimit": "蛛网限速",
+    "SpeedLimit": "滑翔限速",
+    "LogLanding": "记录落点",
+    "LogDirection": "推算要塞方向",
+    "LogDeath": "记录死亡",
+    "CurrentAC": "当前反作弊",
+    "GrimSelfCheck": "Grim自检",
+    "GrimMultiPlace": "多点放置绕过",
+    "AutoFlushPlaceQueue": "放置后刷新队列",
+    "AutoFlushPlaceBreakQueue": "挖掘前刷新队列",
+    "InventorySprintFix": "背包疾跑修复",
+    "InventoryWalkFix": "背包行走修复",
+    "ElytraInputFix": "鞘翅输入修复",
+    "ToggleFlying": "切换飞行",
+    "LogTotalCount": "记录图腾总数",
+    "PopFormat": "图腾播报格式",
+    "DeathFormat": "死亡播报格式",
+    "FlightMode": "飞行模式",
+    "MotionMode": "运动模式",
+    "FireworksRotationTicks": "烟花转向时长",
+    "OverridePullupAngle": "覆盖拉升角",
+    "PullupAngle": "拉升角度",
+    "OverrideDownwardAngle": "覆盖俯冲角",
+    "DownwardAngle": "俯冲角度",
+    "OverrideHorizontalFlyAngle": "覆盖平飞角",
+    "HorizontalFlyAngle": "平飞角度",
+    "HoldJumpTakeoffTicks": "长按跳跃起飞",
+    "HoldJumpTicks": "长按跳跃 tick",
+    "AutoFly": "自动飞行",
+    "LandAutoClose": "落地自动关闭",
+    "AttackSelectBestWeapon": "自动选最佳武器",
+    "AutoAntiShield": "自动反盾",
+    "TryCriticalSprint": "暴击冲刺处理",
+    "SwingHand": "挥手",
+    "OnlyFocus": "仅攻击准星目标",
+    "OnlyFront": "仅攻击前方",
+    "NoFallOnLanding": "落地无摔伤",
+    "AutoTakeoffFireworksFromGround": "地面烟花起飞",
+    "PlayerOnly": "仅玩家",
+    "AutoControlElytra": "自动控制鞘翅",
+    "DynamicTarget": "动态目标",
+    "OnlyWhenNoWasd": "仅在无移动输入时",
+    "CombatRange": "战斗距离",
+    "CombatSpearRange": "长矛战斗距离",
+    "MaceMinFallDistance": "切锤最小下落",
+    "MaceHeight": "锤击高度",
+    "MaceSwapMinDelay": "切锤最小间隔",
+    "CircleExtraRange": "绕圈额外距离",
+    "CombatSmoothFlight": "平滑飞行",
+    "PredictTicks": "目标预测 tick",
+    "AutoAttack": "自动攻击",
+    "AttackMode": "攻击方式",
+    "AttackRange": "攻击距离",
+    "EnableControl": "启用控制",
+    "CruisePitch": "巡航俯仰角"
+  },
+  "VALUE_NAMES": {
+    "Follow": "跟随",
+    "MaceAura": "锤光环",
+    "SpearAura": "长矛光环",
+    "Vanilla": "原版",
+    "Packet": "发包",
+    "Control": "控制",
+    "Rotation": "仅转向",
+    "None": "无",
+    "Void": "虚空",
+    "Fireworks": "烟花",
+    "Grim": "Grim",
+    "Matrix": "Matrix",
+    "Escaping": "脱离",
+    "Towards": "接近",
+    "Circling": "绕圈",
+    "SlowSpeed": "低速",
+    "Afk": "待机"
   }
 }
